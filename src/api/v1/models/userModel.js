@@ -1,7 +1,7 @@
 import pool from "../../../../config/db/conectionDb.js";
 import bcrypt from "bcryptjs";
 
-//Table: user
+//Table: user_data
 const createUser = async (
   rut,
   name,
@@ -15,7 +15,7 @@ const createUser = async (
   try {
     const hashedPassword = bcrypt.hashSync(password);
     const SQLquery = {
-      text: 'INSERT INTO "user" (rut, name, last_name, postal_code, email, password, birth_date, rol ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING * ; ',
+      text: 'INSERT INTO user_data (rut, name, last_name, postal_code, email, password, birth_date, rol ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING * ; ',
       values: [
         rut,
         name,
@@ -47,7 +47,7 @@ const updateUsers = async (
 ) => {
   try {
     const SQLquery = {
-      text: 'UPDATE "user" SET rut = COALESCE($1, rut), name = COALESCE($2, name), last_name = COALESCE($3, last_name), postal_code = COALESCE($4, postal_code), email = COALESCE($5, email), password = COALESCE($6, password), birth_date = COALESCE($7, birth_date), rol = COALESCE($8, rol) WHERE id = $9 RETURNING *;',
+      text: 'UPDATE user_data SET rut = COALESCE($1, rut), name = COALESCE($2, name), last_name = COALESCE($3, last_name), postal_code = COALESCE($4, postal_code), email = COALESCE($5, email), password = COALESCE($6, password), birth_date = COALESCE($7, birth_date), rol = COALESCE($8, rol) WHERE id = $9 RETURNING *;',
       values: [
         rut,
         name,
@@ -70,7 +70,7 @@ const updateUsers = async (
 const getUserAll = async () => {
   try {
     const SQLquery = {
-      text: 'SELECT * FROM "user" ;'
+      text: 'SELECT * FROM user_data ;'
     };
     const response = await pool.query(SQLquery);
     return response.rows[0];
@@ -82,7 +82,7 @@ const getUserAll = async () => {
 const getUser = async (id) => {
   try {
     const SQLquery = {
-      text: 'SELECT * FROM "user" WHERE id = $1',
+      text: 'SELECT * FROM user_data WHERE id = $1',
       values: [id]
     };
     const response = await pool.query(SQLquery);
@@ -95,7 +95,7 @@ const getUser = async (id) => {
 const byEmail = async ({ email }) => {
   try {
     const SQLquery = {
-      text: 'SELECT * FROM "user" WHERE email = $1',
+      text: 'SELECT * FROM user_data WHERE email = $1',
       values: [email]
     };
     const response = await pool.query(SQLquery);
@@ -108,7 +108,7 @@ const byEmail = async ({ email }) => {
 const deleteUserByIds = async (id) => {
   try {
     const SQLquery = {
-      text: 'DELETE FROM "user" WHERE id = $1 RETURNING *',
+      text: 'DELETE FROM user_data WHERE id = $1 RETURNING *',
       values: [id]
     };
     const response = await pool.query(SQLquery);
@@ -203,9 +203,9 @@ const getFavoritesByUsers = async (client_rut) => {
     const SQLquery = {
       text: `SELECT fav.rut, fav.product_code, fav.description, fav.product_name, fav.price, fav.stock, fav.product_image 
             FROM (
-                  SELECT *, "user".name AS name_user, products.name AS product_name, products.id AS product_code
+                  SELECT *, user_data.name AS name_user, products.name AS product_name, products.id AS product_code
                   FROM favorites
-                  RIGHT JOIN "user" ON favorites.client_rut = "user".rut 
+                  RIGHT JOIN user_data ON favorites.client_rut = user_data.rut 
                   RIGHT JOIN products ON favorites.product_id = products.id
                   WHERE favorites.client_rut = $1
                   ORDER BY favorites.client_rut

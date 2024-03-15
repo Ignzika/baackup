@@ -6,7 +6,7 @@ SET search_path TO public;
 DROP EXTENSION IF EXISTS "uuid-ossp";
 CREATE EXTENSION "uuid-ossp" SCHEMA public;
 
-CREATE TABLE "user" (
+CREATE TABLE "user_data" (
   "rut" INT UNIQUE NOT NULL PRIMARY KEY,
   "name" VARCHAR NOT NULL,
   "last_name" VARCHAR NOT NULL ,
@@ -21,7 +21,7 @@ CREATE TABLE "user" (
 );
 
 CREATE TABLE "address" (
-  "postal_code" INT UNIQUE NOT NULL PRIMARY KEY REFERENCES "user"(postal_code),
+  "postal_code" INT UNIQUE NOT NULL PRIMARY KEY REFERENCES "user_data"(postal_code),
   "street_name" VARCHAR NOT NULL,
   "phone" VARCHAR NOT NULL,
   "address_number" INT NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE "products" (
 
 CREATE TABLE "favorites" (
   "favorites_id" SERIAL UNIQUE ,
-  "client_rut" INT REFERENCES "user"(rut),
+  "client_rut" INT REFERENCES "user_data"(rut),
   "product_id" UUID REFERENCES "products"(id),
   "created_at" TIMESTAMP DEFAULT NOW() NOT NULL ,
   "updated_at" TIMESTAMP DEFAULT NOW() NOT NULL
@@ -53,7 +53,7 @@ CREATE TABLE "favorites" (
 
 CREATE TABLE "store_cart" (
   "id" uuid DEFAULT gen_random_uuid() UNIQUE PRIMARY KEY,
-  "client_rut" INT NOT NULL REFERENCES "user"(rut),
+  "client_rut" INT NOT NULL REFERENCES "user_data"(rut),
   "product_code" INT NOT NULL,
   "product_price" INT NOT NULL,
   "product_amount" INT NOT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE "buy_order" (
 
 CREATE TABLE "order_history" (
   "id" uuid DEFAULT gen_random_uuid() UNIQUE PRIMARY KEY,
-  "client_rut" INT REFERENCES "user"(rut),
+  "client_rut" INT REFERENCES "user_data"(rut),
   "postal_code" INT NOT NULL,
   "product_code" INT NOT NULL,
   "product_price" INT NOT NULL,
@@ -96,7 +96,7 @@ END;
 $$ language plpgsql;
 
 CREATE TRIGGER user_updated_at_trigger
-BEFORE UPDATE ON "user"
+BEFORE UPDATE ON "user_data"
 FOR EACH ROW
 EXECUTE PROCEDURE update_updated_at();
 
@@ -115,4 +115,4 @@ BEFORE UPDATE ON "favorites"
 FOR EACH ROW
 EXECUTE PROCEDURE update_updated_at();
 
-INSERT INTO "user" (rut, name, last_name, postal_code, email, password, birth_date, rol ) VALUES ( 1000001, "ADMIN", "ADMIN", correo@correo.cl, 123456789, 31/12/1900, "ADMIN"); 
+INSERT INTO "user_data" (rut, name, last_name, postal_code, email, password, birth_date, rol ) VALUES ( 1000001, "ADMIN", "ADMIN", correo@correo.cl, 123456789, 31/12/1900, "ADMIN"); 
