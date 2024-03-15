@@ -23,7 +23,7 @@ app.use((err, req, res, next) => {
 });
 
 // const PORT = 3001 // for tesing
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 app.listen(PORT, (error) => {
   if (error) {
