@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
-import { logger } from "logger-express"; //coemntar cuando se testee
+import { logger } from "logger-express"; //comentar cuando se testee
+app.use(logger());
 import productRoutes from "./config/routes/productRoutes.js";
 import loginRoutes from "./config/routes/loginRoutes.js";
 import userRoutes from "./config/routes/userRoutes.js";
@@ -10,7 +11,6 @@ const app = express();
 // swagger
 app.use(cors());
 //app.options("*", cors());
-app.use(logger());
 app.use(express.json());
 app.use("/api/v1/store", productRoutes);
 app.use("/api/v1/login", loginRoutes);

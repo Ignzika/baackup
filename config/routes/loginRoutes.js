@@ -83,3 +83,9 @@ const router = express.Router();
 router.post("/user/login", validparameters, loginUser);
 
 export default router;
+
+
+
+const baseURLLogin = "https://backend-backup-3tm8.onrender.com/api/v1/login";
+// Rutas para login
+// `${baseURL}/user/login`//post

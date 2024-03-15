@@ -14,9 +14,6 @@ import {
 import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
 const router = express.Router();
 
-
-//Rutas para axion   /api/v1/store + la ruta de abajo
-
 //products 
 router.get("/products", getAllProducts);
 router.get("/product/:id", getProductsById);
@@ -38,3 +35,22 @@ router.post("/users/history", salesHistory);
 router.all("*", notFound); //pasar a session routee
 
 export default router;
+
+
+// const baseURLProducts = "https://backend-backup-3tm8.onrender.com/api/v1/store";
+
+// // Rutas para productos
+// baseURL + "/products" //get
+// baseURL + "/product/:id" //get
+// baseURL + "/admin/product/:id" //get
+// baseURL + "/admin/products" //post
+// baseURL + "/admin/product/:id" //delete
+// baseURL + "/admin/product/:id" //put
+// baseURL + "/admin/product/:id"//patch
+// carro:
+// baseURL + "/user/cart"//post
+// baseURL + "/user/cart/:id"//delete
+// orden:
+// baseURL + "/user/order" //post
+// historial:
+// baseURL + "/users/history" //post

@@ -36,3 +36,20 @@ router.put("/user/address/:postal_code",loginProtect,updateAddress) // deberia s
 router.delete("/user/address/:postal_code",loginProtect,removeAddress)
 
 export default router;
+
+// const baseURL = "https://backend-backup-3tm8.onrender.com/api/v1";
+
+// // Rutas para usuarios
+// `${baseURL}/user`//post
+// `${baseURL}/user/${id}`//put
+// `${baseURL}/admin/users`//get
+// `${baseURL}/admin/users/${id}`//get
+// `${baseURL}/admin/user/${id}`//delete
+//favorites
+// `${baseURL}/user/favorite/like/${id}`//get
+// `${baseURL}/user/favorites`//post
+// `${baseURL}/user/favorites/${favorites_id}`//delete
+//address
+// `${baseURL}/user/address`//post  
+// `${baseURL}/user/address/${postal_code}` //put 
+// `${baseURL}/user/address/${postal_code}`//delete
