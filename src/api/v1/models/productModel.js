@@ -3,7 +3,7 @@ import pool from "../../../../config/db/conectionDb.js";
 //table: products
 const getProduct = async () => {
   try {
-    const SQLquery = { text: "SELECT * FROM products RETURNING *" };
+    const SQLquery = { text: "SELECT * FROM products ;" };
     const response = await pool.query(SQLquery);
     return response.rows;
   } catch (error) {
