@@ -82,7 +82,7 @@ const getUserAll = async () => {
 const getUser = async (id) => {
   try {
     const SQLquery = {
-      text: 'SELECT * FROM user_data WHERE id = $1',
+      text: 'SELECT * FROM user_data WHERE rut = $1',
       values: [id]
     };
     const response = await pool.query(SQLquery);
