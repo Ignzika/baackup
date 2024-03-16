@@ -23,7 +23,7 @@ const createNewUser = async (req, res, next) => {
       email,
       password,
       birth_date,
-      rol
+      rol = "user"
     } = req.body;
     const result = await createUser(
       rut,
