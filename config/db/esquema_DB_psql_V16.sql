@@ -10,11 +10,11 @@ CREATE TABLE "user_data" (
   "rut" INT UNIQUE NOT NULL PRIMARY KEY,
   "name" VARCHAR NOT NULL,
   "last_name" VARCHAR NOT NULL ,
-  "postal_code" INT UNIQUE NOT NULL,
+  "postal_code" INT UNIQUE,
   "email" VARCHAR UNIQUE NOT NULL,
   "password" VARCHAR NOT NULL CHECK (length(password) >= 6),
-  "birth_date" TIMESTAMP NOT NULL CHECK (birth_date < created_at ), -- add constraint or something for hour
-  "rol" VARCHAR NOT NULL,
+  "birth_date" TIMESTAMP CHECK (birth_date < created_at ), -- add constraint or something for hour
+  "rol" VARCHAR NOT NULL DEFAULT user,
   "is_banned" BOOLEAN NOT NULL DEFAULT (false),
   "created_at" TIMESTAMP NOT NULL DEFAULT NOW(),
   "updated_at" TIMESTAMP NOT NULL DEFAULT NOW() 

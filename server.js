@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import { logger } from "logger-express"; //comentar cuando se testee
-app.use(logger());
 import productRoutes from "./config/routes/productRoutes.js";
 import loginRoutes from "./config/routes/loginRoutes.js";
 import userRoutes from "./config/routes/userRoutes.js";
@@ -16,6 +15,7 @@ app.use("/api/v1/store", productRoutes);
 app.use("/api/v1/login", loginRoutes);
 app.use("/api/v1", userRoutes);
 
+app.use(logger());
 app.use((err, req, res, next) => {
   return res.status(500).json({
     status: "error",

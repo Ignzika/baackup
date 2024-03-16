@@ -70,10 +70,10 @@ const updateUsers = async (
 const getUserAll = async () => {
   try {
     const SQLquery = {
-      text: 'SELECT * FROM user_data ;'
+      text: 'SELECT * FROM user_data RETURNING *;'
     };
     const response = await pool.query(SQLquery);
-    return response.rows[0];
+    return response.rows;
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }

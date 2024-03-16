@@ -40,17 +40,17 @@ export default router;
 // const baseURLProducts = "https://backend-backup-3tm8.onrender.com/api/v1/store";
 
 // // Rutas para productos
-// baseURL + "/products" //get
-// baseURL + "/product/:id" //get
-// baseURL + "/admin/product/:id" //get
-// baseURL + "/admin/products" //post
-// baseURL + "/admin/product/:id" //delete
-// baseURL + "/admin/product/:id" //put
-// baseURL + "/admin/product/:id"//patch
-// carro:
-// baseURL + "/user/cart"//post
-// baseURL + "/user/cart/:id"//delete
-// orden:
-// baseURL + "/user/order" //post
-// historial:
-// baseURL + "/users/history" //post
+// `${baseURL}/products` //get
+// `${baseURL}/product/:id` //get
+// `${baseURL}/admin/product/:id` //get
+// `${baseURL}/admin/products` //post
+// `${baseURL}/admin/product/:id` //delete
+// `${baseURL}/admin/product/:id` //put
+// `${baseURL}/admin/product/:id`//patch
+// `carro:
+// `${baseURL}/user/cart`//post
+// `${baseURL}/user/cart/:id`//delete
+// `orden:
+// `${baseURL}/user/order` //post
+// `historial:
+// `${baseURL}/users/history` //post
