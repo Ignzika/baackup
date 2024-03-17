@@ -3,8 +3,6 @@ import { loginUser } from "../../src/api/v1/controllers/loginController.js";
 import { validparameters } from "../../middlewares/validateParametersLogin.js";
 const router = express.Router();
 
-// REVISAR CON EL SWAGGER QUE NOSOTROS DEFINIMOS LO QUE VIENE A CONTINUACIÓN. ESTÁ ECHO, SOLO HAY QUE RESCATARLO
-
 /**
  * @swagger
  * tags:

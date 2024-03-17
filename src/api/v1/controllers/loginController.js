@@ -24,13 +24,15 @@ const loginUser = async (req, res) => {
           .status(errorFound[0].status)
           .json({ error: errorFound[0].message});
       } else {
-        const { email, name, last_name } = findUser;
+        const { email, name, last_name, rut, is_banned } = findUser;
 
         const token = jwt.sign({ email }, process.env.JWT_SECRET, {
-          expiresIn: "1h",
+          expiresIn: "30min",
         });
         res.status(200).json({
           message: `Bienvenido, ${name} ${last_name} has iniciado sesion`,
+          id: rut,
+          status: is_banned,
           code: 200,
           token,
         });
