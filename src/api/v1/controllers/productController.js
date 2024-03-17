@@ -158,25 +158,13 @@ const buyOrder = async (req, res, next) => {
 
 //historial de ventas
 const salesHistory = async (req, res, next) => {
+  const { id } = req.params;
   try {
     const {
-      client_rut,
-      postal_code,
-      product_code,
-      product_price,
-      product_amount,
-      total_price,
-      send_at
+      id,
     } = req.body;
-
-    const result = await createStoreCart(
-      client_rut,
-      postal_code,
-      product_code,
-      product_price,
-      product_amount,
-      total_price,
-      send_at
+    const result = await getOrderHistory(
+      id,
     );
 
     res.status(201).json({ added_to_history: result });

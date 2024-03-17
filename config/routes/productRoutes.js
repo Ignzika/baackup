@@ -30,7 +30,7 @@ router.post("/user/cart/:id", removeFromCart);
   //orden
 router.post("/user/order", buyOrder);
   //historial
-router.post("/users/history", salesHistory);
+router.post("/users/history/:id", salesHistory);
 
 router.all("*", notFound); //pasar a session routee
 
