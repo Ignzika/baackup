@@ -9,9 +9,7 @@ const loginGoogle = async (req, res) => {
     const id_token = google.credential;
     if (id_token === undefined || id_token == "")
       res.status(400).json({ msg: "falta jwt" });
-    const { name, picture, email } = await googleVerify(id_token);
-
-    console.log("byEmail", email);
+    const { name, email } = await googleVerify(id_token);
 
     const findUser = await byEmail({ email });
 

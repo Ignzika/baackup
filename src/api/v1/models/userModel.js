@@ -35,7 +35,6 @@ const createUser = async (
 };
 
 const updateUsers = async (
-  id,
   rut,
   name,
   last_name,
@@ -47,7 +46,7 @@ const updateUsers = async (
 ) => {
   try {
     const SQLquery = {
-      text: 'UPDATE user_data SET rut = COALESCE($1, rut), name = COALESCE($2, name), last_name = COALESCE($3, last_name), postal_code = COALESCE($4, postal_code), email = COALESCE($5, email), password = COALESCE($6, password), birth_date = COALESCE($7, birth_date), rol = COALESCE($8, rol) WHERE id = $9 RETURNING *;',
+      text: 'UPDATE user_data SET name = COALESCE($2, name), last_name = COALESCE($3, last_name), postal_code = COALESCE($4, postal_code), email = COALESCE($5, email), password = COALESCE($6, password), birth_date = COALESCE($7, birth_date), rol = COALESCE($8, rol) WHERE rut = $1 RETURNING *;',
       values: [
         rut,
         name,
@@ -57,7 +56,6 @@ const updateUsers = async (
         password,
         birth_date,
         rol,
-        id
       ]
     };
     const response = await pool.query(SQLquery);
@@ -108,7 +106,7 @@ const byEmail = async ({ email }) => {
 const deleteUserByIds = async (id) => {
   try {
     const SQLquery = {
-      text: 'DELETE FROM user_data WHERE id = $1 RETURNING *',
+      text: 'DELETE FROM user_data WHERE rut = $1 RETURNING *',
       values: [id]
     };
     const response = await pool.query(SQLquery);
