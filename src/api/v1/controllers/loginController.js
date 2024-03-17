@@ -31,10 +31,12 @@ const loginUser = async (req, res) => {
         });
         res.status(200).json({
           message: `Bienvenido, ${name} ${last_name} has iniciado sesion`,
+          user_name: name,
+          user_last_name: last_name,
           id: rut,
           status: is_banned,
           code: 200,
-          token,
+          token
         });
       }
     }

@@ -1,4 +1,4 @@
-import { findError } from "../src/api/v1/utils/utils.js";
+// import { findError } from "../src/api/v1/utils/utils.js";
 import jwt from "jsonwebtoken";
 
 export const loginProtect = async (req, res, next) => {

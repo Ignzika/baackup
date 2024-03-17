@@ -9,8 +9,9 @@ import googleRoutes from "./config/routes/googleRoutes.js";
 
 const app = express();
 // swagger
-app.use(cors());
-//app.options("*", cors());
+app.use("*", cors());
+// app.use(cors());
+// app.options("*", cors());
 app.use(express.json());
 app.use("/api/v1/store", productRoutes);
 app.use("/api/v1/login", loginRoutes);
@@ -26,7 +27,7 @@ app.use((err, req, res, next) => {
 });
 
 // const PORT = 3001 // for tesing
-const PORT = process.env.PORT;
+const PORT = 3000;
 
 app.listen(PORT, (error) => {
   if (error) {
