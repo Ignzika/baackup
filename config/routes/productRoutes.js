@@ -37,7 +37,9 @@ router.all("*", notFound); //pasar a session routee
 export default router;
 
 
-// const baseURLProducts = "https://backend-backup-3tm8.onrender.com/api/v1/store";
+// const baseURLProducts = "https://backend-backup-3tm8.onrender.com
+// /api/v1
+// /store";
 
 // // Rutas para productos
 // `${baseURL}/products` //get

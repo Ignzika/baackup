@@ -45,7 +45,6 @@ const updateUser = async (req, res, next) => {
   try {
     const { id } = req.params;
     const {
-      rut,
       name,
       last_name,
       postal_code,
@@ -56,7 +55,6 @@ const updateUser = async (req, res, next) => {
     } = req.body;
     const result = await updateUsers(
       id,
-      rut,
       name,
       last_name,
       postal_code,
