@@ -116,3 +116,17 @@ FOR EACH ROW
 EXECUTE PROCEDURE update_updated_at();
 
 INSERT INTO "user_data" (rut, name, last_name, postal_code, email, password, birth_date, rol ) VALUES ( 1000001, "ADMIN", "ADMIN", correo@correo.cl, 123456789, 31/12/1900, "ADMIN"); 
+
+
+INSERT INTO store_cart (client_rut, product_code, product_price, product_amount, total_price)
+VALUES 
+    (1700001, 1, 999, 2, 1998),
+    (1700001, 2, 1499, 1, 1499),
+    (1700001, 3, 1999, 3, 5997);
+
+
+    INSERT INTO buy_order (client_rut, postal_code, product_code, product_price, product_amount, total_price, created_at)
+VALUES 
+    ( 1700001, 12345, 1, 999, 2, 1998, NOW()),
+    ( 1700001, 12345, 2, 1499, 1, 1499, NOW()),
+    ( 1700001, 12345, 3, 1999, 3, 5997, NOW());

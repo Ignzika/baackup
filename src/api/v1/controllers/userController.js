@@ -52,7 +52,8 @@ const updateUser = async (req, res, next) => {
       email,
       password,
       birth_date,
-      rol
+      rol,
+      is_banned
     } = req.body;
     const result = await updateUsers(
       id,
@@ -63,7 +64,8 @@ const updateUser = async (req, res, next) => {
       email,
       password,
       birth_date,
-      rol
+      rol,
+      is_banned
     );
 
     res.status(200).json({ user: result });

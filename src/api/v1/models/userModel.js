@@ -43,11 +43,12 @@ const updateUsers = async (
   email,
   password,
   birth_date,
-  rol
+  rol,
+  is_banned
 ) => {
   try {
     const SQLquery = {
-      text: 'UPDATE user_data SET name = COALESCE($2, name), last_name = COALESCE($3, last_name), postal_code = COALESCE($4, postal_code), email = COALESCE($5, email), password = COALESCE($6, password), birth_date = COALESCE($7, birth_date), rol = COALESCE($8, rol) WHERE rut = $1 RETURNING *;',
+      text: 'UPDATE user_data SET name = COALESCE($2, name), last_name = COALESCE($3, last_name), postal_code = COALESCE($4, postal_code), email = COALESCE($5, email), password = COALESCE($6, password), birth_date = COALESCE($7, birth_date), rol = COALESCE($8, rol), is_banned= COALESCE($9, is_banned) WHERE rut = $1 RETURNING *;',
       values: [
         id,
         name,
@@ -57,6 +58,7 @@ const updateUsers = async (
         password,
         birth_date,
         rol,
+        is_banned,
       ]
     };
     const response = await pool.query(SQLquery);
