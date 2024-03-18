@@ -22,17 +22,18 @@ const loginUser = async (req, res) => {
         const errorFound = findError("auth_02");
         return res
           .status(errorFound[0].status)
-          .json({ error: errorFound[0].message});
+          .json({ error: errorFound[0].message });
       } else {
-        const { email, name, last_name, rut, is_banned } = findUser;
+        const { email, name, last_name, rol, rut, is_banned } = findUser;
 
         const token = jwt.sign({ email }, process.env.JWT_SECRET, {
-          expiresIn: "30min",
+          expiresIn: "10min"
         });
         res.status(200).json({
           message: `Bienvenido, ${name} ${last_name} has iniciado sesion`,
           user_name: name,
           user_last_name: last_name,
+          rol: rol,
           id: rut,
           status: is_banned,
           code: 200,
